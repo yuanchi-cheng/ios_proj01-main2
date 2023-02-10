@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-final List _userpost = <String>[];
+//final List _userpost = <String>[];
+class userinfo{
+  int? number;
+  final List _userpost = <String>[];
+  final List _userpost_mood=<int>[];
+}
+var emotion=<String>["joy","anger","sad","scared","annoyed","amazed","jealous"];
 int timecount=0;
 
 class UserPost extends StatefulWidget {
@@ -13,7 +19,6 @@ class _UserPostState extends State<UserPost> {
   final _textController = TextEditingController();
   // store the input text
   String userPost = '';
-
 
 
   @override
@@ -48,12 +53,12 @@ class _UserPostState extends State<UserPost> {
                 color: Colors.grey.shade50,
                 child:
                 ListView.separated(
-                    itemCount: _userpost.length,
+                    itemCount: userinfo()._userpost.length,
                     padding: const EdgeInsets.only(top:15.0,bottom:15 ),
                     separatorBuilder: (BuildContext context,int index)=>
                     const Divider(height: 16,color: Color(0xFFFFFFFF)),
                     itemBuilder: (BuildContext context, int index) {
-                      if (_userpost.isEmpty){
+                      if ( userinfo()._userpost.isEmpty){
                       }
                       else {
                         return Container(
@@ -81,7 +86,7 @@ class _UserPostState extends State<UserPost> {
                                           color:  Colors.grey.shade300,),
                                         child:
                                         Text(
-                                            _userpost[index], textAlign: TextAlign.center,
+                                            userinfo()._userpost[index], textAlign: TextAlign.center,
                                             maxLines: 10),
                                     )
                                   ),
@@ -148,7 +153,7 @@ class _UserPostState extends State<UserPost> {
                           setState(() {
                             userPost=_textController.text;
                             _textController.clear();
-                            _userpost.add(userPost) ;
+                            userinfo()._userpost.add(userPost) ;
                             timecount++;
                           });
                         },
@@ -173,6 +178,6 @@ class _UserPostState extends State<UserPost> {
   }
 }
 
-List store()=>_userpost;
+List store()=> userinfo()._userpost;
 
 
